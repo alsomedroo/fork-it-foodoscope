@@ -1,75 +1,63 @@
-// components/LandingPage.js
+// app/landing/page.js
 import Link from 'next/link';
 import React from 'react';
 
-const LandingPage = () => {
+export default function LandingPage() {
   return (
-    <div className="bg-gray-900 text-white min-h-screen">
-      {/* Header */}
-      <header className="fixed w-full bg-gray-800 bg-opacity-75 p-4">
-        <div className="container mx-auto flex justify-between items-center">
-          <h1 className="text-3xl font-bold">YourWebsite</h1>
-          <nav>
+    <div className="min-h-screen bg-[#DDFFD0]">
+      <header className="bg-[#E3FACE] h-[120px] flex items-center justify-between px-5">
+        <div className="text-6xl font-bold text-green-600 font-sans">Nutribite</div>
+        <nav className="flex items-center space-x-12">
+          <a href="#" className="text-black text-lg hover:underline">
+            Recipe
+          </a>
+          <a href="#" className="text-black text-lg hover:underline">
+            Nutrition Analysis
+          </a>
+          <a href="#" className="text-black text-lg hover:underline">
+            Famous Food
+          </a>
+          <a href="#" className="text-black text-lg hover:underline">
+            About Us
+          </a>
+        </nav>
+        <div className="flex items-center space-x-6">
+          <div className="text-black text-2xl">
+            <i className="fa-regular fa-user"></i>
+          </div>
+
           <Link href="/auth/signup">
-            
-              <button className="hover:underline">Sign in</button>
-              {/* <button className="hover:underline">Sign in</button>
-              <button className="hover:underline">Sign in</button>
-              <button className="hover:underline">Sign in</button> */}
-            
-            </Link>
-          </nav>
+            <button className="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition">
+              Sign in
+            </button>
+          </Link>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="flex items-center justify-center min-h-screen bg-cover bg-center" style={{ backgroundImage: 'url("/hero-image.jpg")' }}>
-        <div className="bg-gray-800 bg-opacity-60 p-8 rounded-lg text-center">
-          <h2 className="text-5xl font-extrabold">Welcome to YourWebsite</h2>
-          <p className="mt-4 text-lg">We provide top-notch solutions for your business needs.</p>
-          <button className="mt-6 px-6 py-3 bg-blue-500 rounded-lg hover:bg-blue-600 transition">Get Started</button>
+      <main className="flex flex-col items-center justify-center text-center min-h-[calc(100vh-120px)]">
+        <h1 className="text-4xl font-bold text-black leading-snug">
+          What <br />
+          Would You Like <br />
+          To Cook Today?
+        </h1>
+        <p className="text-lg text-black mt-6">
+          Our job is to fill your tummy with delicious foods.
+        </p>
+        <div className="flex space-x-20 mt-10">
+          <a
+            href="#"
+            className="text-black text-2xl hover:underline transition"
+          >
+            Explore More
+          </a>
+          <a
+            href="#"
+            className="text-black text-2xl hover:underline transition"
+          >
+            New Suggestion
+          </a>
         </div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="container mx-auto py-16 px-4">
-        <h3 className="text-4xl font-bold text-center">About Us</h3>
-        <p className="mt-6 text-center text-gray-300">YourWebsite is dedicated to delivering high-quality services to help businesses thrive.</p>
-      </section>
-
-      {/* Services Section */}
-      <section id="services" className="bg-gray-800 py-16 px-4">
-        <div className="container mx-auto">
-          <h3 className="text-4xl font-bold text-center">Our Services</h3>
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-gray-700 p-6 rounded-lg">
-              <h4 className="text-2xl font-semibold">Service One</h4>
-              <p className="mt-4 text-gray-300">Description of service one.</p>
-            </div>
-            <div className="bg-gray-700 p-6 rounded-lg">
-              <h4 className="text-2xl font-semibold">Service Two</h4>
-              <p className="mt-4 text-gray-300">Description of service two.</p>
-            </div>
-            <div className="bg-gray-700 p-6 rounded-lg">
-              <h4 className="text-2xl font-semibold">Service Three</h4>
-              <p className="mt-4 text-gray-300">Description of service three.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="container mx-auto py-16 px-4">
-        <h3 className="text-4xl font-bold text-center">Contact Us</h3>
-        <p className="mt-6 text-center text-gray-300">Feel free to reach out to us for more information.</p>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-800 py-8 text-center text-gray-400">
-        <p>&copy; {new Date().getFullYear()} YourWebsite. All rights reserved.</p>
-      </footer>
+      </main>
     </div>
   );
-};
-
-export default LandingPage;
+}
