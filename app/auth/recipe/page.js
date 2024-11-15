@@ -67,20 +67,20 @@ const Recipes = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-100 to-green-300 text-gray-800">
-      <header className="bg-[#E3FACE] h-[120px] flex items-center justify-between px-5">
-        <div className="text-6xl font-bold text-green-600 font-sans">Nutribite</div>
-        <nav className="flex items-center space-x-12">
+      <header className="bg-[#E3FACE] h-[120px] flex items-center justify-between px-5 mb-10">
+        <div className="text-5xl font-bold text-green-600 font-sans">Nutribite</div>
+        <nav className="flex items-center space-x-12 ">
           <Link href="/auth/recipe">
-            <button className="text-black text-2xl hover:text-green-700">Recipes</button>
+          <button className="text-black text-xl hover:text-green-700">Recipes</button>
           </Link>
           <Link href="/auth/nutrition">
-            <button className="text-black text-2xl hover:text-green-700">Nutrition Analysis</button>
+          <button className="text-black text-xl hover:text-green-700">Nutrition Analysis</button>
           </Link>
           <Link href="/auth/famous">
-            <button className="text-black text-2xl hover:text-green-700">Famous Food</button>
+          <button className="text-black text-xl hover:text-green-700">Famous Food</button>
           </Link>
           <Link href="/auth/aboutus">
-            <button className="text-black text-2xl hover:text-green-700">About Us</button>
+          <button className="text-black text-xl hover:text-green-700">About Us</button>
           </Link>
         </nav>
         <div className="flex items-center space-x-6">
