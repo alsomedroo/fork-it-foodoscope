@@ -33,6 +33,11 @@ const Recipes = () => {
       setLoading(false);
     }
   };
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      fetchRecipe();
+    }
+  };
 
   const fetchRecipe = async () => {
     const url = `https://cosylab.iiitd.edu.in/recipe-search/recipe?pageSize=10&searchText=${search}`;
@@ -101,6 +106,7 @@ const Recipes = () => {
             placeholder="Search for recipes"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
+            onKeyDown={handleKeyDown}
             className="w-full p-3 rounded-lg border border-green-500 focus:outline-none focus:ring focus:ring-green-300"
           />
           <button

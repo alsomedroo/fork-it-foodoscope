@@ -1,7 +1,9 @@
 // app/landing/page.js
+'use client'
 import Link from 'next/link';
 import React from 'react';
 import Explore from './/recipiofday';
+import { Typewriter } from 'react-simple-typewriter'
 
 export default function LandingPage() {
   
@@ -40,9 +42,18 @@ export default function LandingPage() {
          // Path from the public folder
       }}>
         <h1 className="text-4xl font-bold text-black leading-snug">
-          What <br />
-          Would You Like <br />
-          To Cook Today?
+        <Typewriter words={['What would you like to Cook today?','Do you even know what you are going to Cook']}
+            loop={5}
+            cursor
+            cursorStyle='_'
+            typeSpeed={70}
+            deleteSpeed={50}
+            delaySpeed={1000}
+            // onLoopDone={handleDone}
+             />
+        
+           
+          
         </h1>
         <p className="text-lg text-black mt-6">
           Our job is to fill your tummy with Genuine Food.
