@@ -1,144 +1,135 @@
 "use client";
-
-import React, { useState } from "react";
-
-const Recipes = () => {
-  const [steps, setSteps] = useState([]); // State to store recipe steps
-  const [id, setId] = useState([]); // This stores the list of recipe IDs
+import React, { useState } from 'react';
+import Link from 'next/link';
+import backgroundImage from '../../../public/slide-3.jpg';
+const divStyle = { 
+  backgroundImage: `url(${backgroundImage.src})`, 
+  backgroundSize: 'cover', 
+  backgroundPosition: 'center', 
+  height: '100vh' 
+};
+const ContinentFoods = () => {
   const [search, setSearch] = useState(""); // Search query
   const [titles, setTitles] = useState([]); // Recipe titles
   const [error, setError] = useState(null); // Error state
-  const [ingredients, setIngredients] = useState([]); // Ingredients state
-  const [loading, setLoading] = useState(false); // Loading state
 
-  // Function to fetch ingredients and steps based on the clicked recipe ID
-  const handleFetchIngredientsAndSteps = async (recipeId) => {
-    setLoading(true);
-    try {
-      const response = await fetch(`https://cosylab.iiitd.edu.in/recipe/${recipeId}`);
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      const data = await response.json();
-
-      if (data.payload && Array.isArray(data.payload.ingredients)) {
-        setIngredients(data.payload.ingredients);
-      } else {
-        setIngredients([]);
-      }
-
-      if (data.payload && Array.isArray(data.payload.instructions)) {
-        setSteps(data.payload.instructions);
-      } else {
-        setSteps([]);
-      }
-    } catch (err) {
-      console.error("Error fetching ingredients or steps:", err);
-      setError(`Error fetching ingredients or steps: ${err.message}`);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Function to fetch recipes based on the search query
-  const fetchRecipe = async () => {
-    const url = `https://cosylab.iiitd.edu.in/recipe-search/recipe?pageSize=10&searchText=${search}`;
+  const fetchTitles = async () => {
+    const url = `https://cosylab.iiitd.edu.in/recipe-search/continents?searchText=${search}&pageSize=10`; // Correct string interpolation
     try {
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-
       const data = await response.json();
-
+      console.log('Full Response:', data); // Log the full response
       if (data.success === "true" && Array.isArray(data.payload.data) && data.payload.data.length > 0) {
-        const recipeIds = data.payload.data.map((recipe) => recipe.Recipe_id);
-        setId(recipeIds);
         setTitles(data.payload.data);
-        setError(null);
       } else {
         setTitles([]);
-        setError("No recipes found.");
       }
-    } catch (err) {
-      setError(`Error fetching recipes: ${err.message}`);
+    } catch (error) {
+      console.error("Error fetching recipes:", error);
+      setError(error.message); // Set error message
       setTitles([]);
     }
   };
 
-  // Function to handle the Enter key press for search
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      fetchRecipe();
-    }
-  };
-
   return (
-    <div>
-      <label htmlFor="search">Search for recipes</label>
-      <br />
-      <input
-        type="text"
-        id="search"
-        placeholder="Search for recipes"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        onKeyDown={handleKeyDown}
-      />
-      <button onClick={fetchRecipe}>Search</button>
-
-      {error && <p style={{ color: "red" }}>{error}</p>}
-
-      {/* Displaying the recipe titles */}
-      <ul>
-        {Array.isArray(titles) && titles.length > 0 ? (
-          titles.map((recipe, index) => (
-            <li key={index}>
-              {recipe.Recipe_title.replace(/<[^>]+>/g, "") || "No Title Available"} 
-              <button onClick={() => handleFetchIngredientsAndSteps(recipe.Recipe_id)}>
-                Get Ingredients & Steps
-              </button>
-            </li>
-          ))
-        ) : (
-          <p>No recipes to display</p>
-        )}
-      </ul>
-
-      {/* Displaying ingredients when available */}
-      {loading && <p>Loading ingredients...</p>}
-      {ingredients.length > 0 && (
-        <div>
-          <h3>Ingredients:</h3>
-          <ul>
-            {ingredients.map((ingredient, index) => (
-              <li key={index}>
-                {ingredient.ingredient && <span>{ingredient.ingredient}</span>}
-                {ingredient.quantity && <span> {ingredient.quantity}</span>}
-                {ingredient.unit && <span> {ingredient.unit}</span>}
-                {ingredient.Carbohydrate && <span> Carbs: {ingredient.Carbohydrate}g</span>}
-                {ingredient.Protein && <span> Protein: {ingredient.Protein}g</span>}
-                {ingredient.Energy && <span> Energy: {ingredient.Energy} kcal</span>}
-                {ingredient["Total lipid (fat)"] && <span> Fat: {ingredient["Total lipid (fat)"]}g</span>}
-              </li>
-            ))}
-          </ul>
+    <div style={divStyle} className="min-h-screen flex flex-col">
+      <header className="bg-[#E3FACE] h-[120px] flex items-center justify-between px-5 relative">
+        <Link href="/">
+          <button className="text-5xl font-bold text-green-600 font-sans transition duration-300 ease-in-out transform hover:scale-110">
+            Nutribite
+          </button>
+        </Link>
+        <nav className="flex items-center space-x-12 ">
+          <Link href="/auth/recipe">
+            <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">
+              Ingredients
+            </button>
+          </Link>
+          <Link href="/auth/nutrition">
+            <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">
+              Nutrition Analysis
+            </button>
+          </Link>
+          <Link href="/auth/famous">
+            <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">
+              Continental
+            </button>
+          </Link>
+          <Link href="/auth/aboutus">
+            <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">
+              About Us
+            </button>
+          </Link>
+        </nav>
+        <div className="flex items-center space-x-6">
+          <div className="text-black text-2xl">
+            <i className="fa-regular fa-user"></i>
+          </div>
+          <Link href="/auth/signup">
+            <button className="bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white px-9 py-3 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl hover:from-green-500 hover:to-green-700">
+              Sign in
+            </button>
+          </Link>
         </div>
-      )}
+      </header>
 
-      {/* Displaying steps when available */}
-      {steps.length > 0 && (
-        <div>
-          <h3>Steps:</h3>
-          <ol>
-            {steps.map((step, index) => (
-              <li key={index}>{step}</li>
-            ))}
-          </ol>
+      <main  className='flex-grow max-w-4xl mx-auto py-8 px-4'>
+        <h1 className="text-4xl font-bold mb-6 text-center text-gray-800">Continent Foods</h1>
+        <div className="mb-6">
+          
+          <div className="flex scale-150">
+            <input
+              type="text"
+              id="search"
+              placeholder="Enter continent name"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && fetchTitles()}
+              className="flex-1 rounded-l-md border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 px-4 py-2"
+            />
+            <button
+              onClick={fetchTitles}
+              className="rounded-r-md bg-blue-600 text-white hover:bg-blue-700 px-4 py-2"
+            >
+              Search
+            </button>
+          </div>
         </div>
-      )}
+
+        {error && <p className="text-red-500 text-center mb-6">{error}</p>}
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {titles.length > 0 ? (
+            titles.map((title, index) => (
+              <div key={index} className="bg-white rounded-lg shadow-lg hover:shadow-xl p-6">
+                <h3 className="text-2xl font-bold mb-4 text-gray-800">{title.Recipe_title.replace(/<[^>]+>/g, "") || "No Title"}</h3>
+              </div>
+            ))
+          ) : (
+            <p className="col-span-3 text-center text-lg text-gray-500">No recipes to display</p>
+          )}
+        </div>
+      </main>
+
+      <footer className="bg-green-800 text-white py-6 mt-auto">
+        <div className="flex flex-col items-center justify-center">
+          <h2 className="text-2xl font-bold mb-4">Nutribite</h2>
+          <p className="text-center text-sm mb-6">
+            Serving delicious recipes and nutrition tips. Your ultimate food companion!
+          </p>
+          <div className="flex space-x-6">
+            <a href="#" className="hover:underline">About Us</a>
+            <a href="#" className="hover:underline">Privacy Policy</a>
+            <a href="#" className="hover:underline">Contact</a>
+          </div>
+          <p className="text-xs mt-6">© 2024 Nutribite. All Rights Reserved.</p>
+        </div>
+      </footer>
     </div>
   );
 };
 
-export default Recipes;
+export default ContinentFoods;

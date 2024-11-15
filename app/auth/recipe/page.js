@@ -1,8 +1,16 @@
+// app/landing/recipes.js
 "use client";
-import Recipi2 from ".//recipi2";
+import Recipi2 from "./recipi2";
 import React, { useState } from "react";
 import Link from 'next/link';
+import backgroundImage from '../../../public/slide-3.jpg';
 
+const divStyle = { 
+  backgroundImage: `url(${backgroundImage.src})`, 
+  backgroundSize: 'cover', 
+  backgroundPosition: 'center', 
+  height: '100vh' 
+};
 const Recipes = () => {
   const [id, setId] = useState([]); // Recipe IDs
   const [search, setSearch] = useState(""); // Search query
@@ -33,6 +41,7 @@ const Recipes = () => {
       setLoading(false);
     }
   };
+
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       fetchRecipe();
@@ -67,64 +76,63 @@ const Recipes = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-100 to-green-300 text-gray-800">
-      <header className="bg-[#E3FACE] h-[120px] flex items-center justify-between px-5 mb-10">
-        <div className="text-5xl font-bold text-green-600 font-sans">Nutribite</div>
-        <nav className="flex items-center space-x-12 ">
+      <header className="bg-[#E3FACE] h-[120px] flex items-center justify-between px-5 ">
+      <Link href="/"><button className="text-5xl font-bold text-green-600 font-sans transition duration-300 ease-in-out transform hover:scale-110">Nutribite</button></Link>
+        <nav className="flex items-center space-x-12">
           <Link href="/auth/recipe">
-          <button className="text-black text-xl hover:text-green-700">Recipes</button>
+            <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">Ingredients</button>
           </Link>
           <Link href="/auth/nutrition">
-          <button className="text-black text-xl hover:text-green-700">Nutrition Analysis</button>
+            <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">Nutrition Analysis</button>
           </Link>
           <Link href="/auth/famous">
-          <button className="text-black text-xl hover:text-green-700">Famous Food</button>
+            <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">Continental</button>
           </Link>
           <Link href="/auth/aboutus">
-          <button className="text-black text-xl hover:text-green-700">About Us</button>
+            <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">About Us</button>
           </Link>
         </nav>
         <div className="flex items-center space-x-6">
           <div className="text-black text-2xl">
             <i className="fa-regular fa-user"></i>
           </div>
-
           <Link href="/auth/signup">
-            <button className="bg-green-600 text-white px-9 py-3 rounded-full hover:bg-green-700 transition">
+            <button className="bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white px-9 py-3 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl hover:from-green-500 hover:to-green-700">
               Sign in
             </button>
           </Link>
         </div>
       </header>
 
-      <main className="flex-grow max-w-4xl mx-auto p-6">
-        <h1 className="text-3xl font-bold text-center text-green-900 mb-8">
+      <main style={divStyle} className="">
+        <h1 className="flex-grow max-w-4xl mx-auto p-6 text-3xl font-bold text-center text-green-900 mb-8">
           Recipe Finder
         </h1>
-        <div className="flex items-center justify-center gap-4 mb-6">
+        <div className="flex-grow max-w-4xl mx-auto p-6 flex items-center justify-center gap-4 mb-6">
           <input
             type="text"
             placeholder="Search for recipes"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="w-full p-3 rounded-lg border border-green-500 focus:outline-none focus:ring focus:ring-green-300"
+            className="w-full p-3 rounded-lg border border-green-500 focus:outline-none focus:ring focus:ring-green-300 transition duration-300 ease-in-out transform hover:scale-105"
           />
           <button
             onClick={fetchRecipe}
-            className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition"
+            className="bg-green-600 text-white px-6 py-3 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 hover:bg-green-700"
           >
             Search
           </button>
         </div>
 
-        {error && <p className="text-red-600 text-center mb-4">{error}</p>}
+        {error && <p className="flex-grow max-w-4xl mx-auto p-6 text-red-600 text-center mb-4">{error}</p>}
 
-        <ul className="space-y-4">
+        <ul className="flex-grow max-w-4xl mx-auto p-6 space-y-4">
           {titles.length > 0 ? (
             titles.map((recipe, index) => (
               <li
                 key={index}
-                className="bg-white shadow-lg rounded-lg p-4 border border-gray-200"
+                className="bg-white shadow-lg rounded-lg p-4 border border-gray-200 transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl"
               >
                 <div className="flex justify-between items-center">
                   <h2 className="font-semibold text-lg text-green-700">
@@ -132,7 +140,7 @@ const Recipes = () => {
                   </h2>
                   <button
                     onClick={() => handleFetchIngredients(recipe.Recipe_id, recipe.Recipe_title)}
-                    className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition"
+                    className="bg-green-500 text-white px-4 py-2 rounded-md shadow transition duration-300 ease-in-out transform hover:scale-105 hover:bg-green-600"
                   >
                     View Ingredients
                   </button>
@@ -143,7 +151,7 @@ const Recipes = () => {
                 )}
 
                 {ingredients.length > 0 && loadingRecipeId === recipe.Recipe_id && (
-                  <div className="mt-8 bg-white shadow-md rounded-lg p-6">
+                  <div className="mt-8 bg-white shadow-md rounded-lg p-6 transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl">
                     <h3 className="text-2xl font-bold text-green-800 mb-4">
                       Ingredients for {selectedRecipeTitle.replace(/<[^>]+>/g, "")}
                     </h3>
@@ -179,22 +187,21 @@ const Recipes = () => {
         </ul>
       </main>
 
-      <footer className="bg-green-800 text-white py-10 px-6">
-        <div className="relative z-10 flex flex-col items-center justify-center">
-          <h2 className="text-2xl font-bold mb-4">Nutribite</h2>
-          <p className="text-center text-sm mb-6">
-            Serving delicious recipes and nutrition tips. Your ultimate food companion!
-          </p>
-          <div className="flex space-x-6">
-            <a href="#" className="hover:underline">About Us</a>
-            <a href="#" className="hover:underline">Privacy Policy</a>
-            <a href="#" className="hover:underline">Contact</a>
-          </div>
-          <p className="text-xs mt-6">© 2024 Nutribite. All Rights Reserved.</p>
-        </div>
-      </footer>
+      <footer className="bg-green-800 text-white py-8 px-6">
+  <div className="relative z-10 flex flex-col items-center justify-center">
+    <h2 className="text-2xl font-bold mb-4 transition duration-300 ease-in-out transform hover:scale-110">Nutribite</h2>
+    <p className="text-center text-sm mb-6">
+      Serving delicious recipes and nutrition tips. Your ultimate food companion!
+    </p>
+    <div className="flex space-x-6">
+      <a href="#" className="hover:underline transition duration-300 ease-in-out transform hover:scale-110">About Us</a>
+      <a href="#" className="hover:underline transition duration-300 ease-in-out transform hover:scale-110">Privacy Policy</a>
+      <a href="#" className="hover:underline transition duration-300 ease-in-out transform hover:scale-110">Contact</a>
     </div>
-  );
-};
-
+    <p className="text-xs mt-6">© 2024 Nutribite. All Rights Reserved.</p>
+  </div>
+</footer>
+</div>
+  )
+}
 export default Recipes;

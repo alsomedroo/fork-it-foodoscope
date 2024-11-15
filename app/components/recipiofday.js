@@ -27,7 +27,7 @@ const Explore = () => {
   }, []);
 
   return (
-    <div className=" backdrop-blur-md from-green-100 via-green-50 to-green-200 p-8 rounded-lg shadow-lg">
+    <div className="transition duration-300 ease-in-out transform hover:scale-110 backdrop-blur-md from-green-100 via-green-50 to-green-200 p-8 rounded-lg shadow-lg">
       <h1 className="text-3xl font-bold text-green-800 mb-4 text-center">
         Recipe of the Day
       </h1>
