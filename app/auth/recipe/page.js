@@ -4,7 +4,16 @@ import Recipi2 from "./recipi2";
 import React, { useState } from "react";
 import Link from 'next/link';
 import backgroundImage from '../../../public/slide-3.jpg';
-
+const borderStyle = {
+  content: '',
+  position: 'absolute',
+  top: '120px',  
+  width: '100%',
+  height: '10px',
+  background: 'linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0))',
+  boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
+  filter: 'blur(5px)'
+};
 const divStyle = { 
   backgroundImage: `url(${backgroundImage.src})`, 
   backgroundSize: 'cover', 
@@ -76,26 +85,27 @@ const Recipes = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-100 to-green-300 text-gray-800">
-      <header className="bg-[#E3FACE] h-[120px] flex items-center justify-between px-5 ">
-      <Link href="/"><button className="text-5xl font-bold text-green-600 font-sans transition duration-300 ease-in-out transform hover:scale-110">Nutribite</button></Link>
-        <nav className="flex items-center space-x-12">
-          <Link href="/auth/recipe">
-            <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">Ingredients</button>
-          </Link>
-          <Link href="/auth/nutrition">
-            <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">Nutrition Analysis</button>
-          </Link>
-          <Link href="/auth/famous">
-            <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">Continental</button>
-          </Link>
-          <Link href="/auth/aboutus">
-            <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">About Us</button>
-          </Link>
-        </nav>
+      <header className="bg-[#E3FACE] h-[120px] flex items-center justify-between px-5 relative md:h-[100px]">
+        <Link href="/"><button className="text-5xl font-bold text-green-600 font-sans transition duration-300 ease-in-out transform hover:scale-110">Nutribite</button></Link>
+        <div className="space-x-12 flex flex-col md:flex-row items-center justify-center md:justify-between space-y-4 md:space-y-0 px-5 py-6 bg-[#E3FACE]">
+        <Link href="/auth/recipe">
+          <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">Ingredients</button>
+        </Link>
+        <Link href="/auth/nutrition">
+          <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">Nutrition Analysis</button>
+        </Link>
+        <Link href="/auth/famous">
+          <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">Continental</button>
+        </Link>
+        <Link href="/auth/aboutus">
+          <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">About Us</button>
+        </Link>
+      </div>
         <div className="flex items-center space-x-6">
-          <div className="text-black text-2xl">
+          <div className="text-black text-2xl hidden md:block">
             <i className="fa-regular fa-user"></i>
           </div>
+
           <Link href="/auth/signup">
             <button className="bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white px-9 py-3 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl hover:from-green-500 hover:to-green-700">
               Sign in
@@ -103,6 +113,30 @@ const Recipes = () => {
           </Link>
         </div>
       </header>
+
+      {/* Navigation Links Below the Header */}
+      <div className="hidden flex  flex-col md:flex-row items-center justify-center md:justify-between space-y-4 md:space-y-0 px-5 py-6 bg-[#E3FACE]">
+        <Link href="/auth/recipe">
+          <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">Ingredients</button>
+        </Link>
+        <Link href="/auth/nutrition">
+          <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">Nutrition Analysis</button>
+        </Link>
+        <Link href="/auth/famous">
+          <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">Continental</button>
+        </Link>
+        <Link href="/auth/aboutus">
+          <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">About Us</button>
+        </Link>
+      </div>
+
+      
+
+      {/* Navigation Links Below the Header */}
+      
+
+      
+
 
       <main style={divStyle} className="">
         <h1 className="flex-grow max-w-4xl mx-auto p-6 text-3xl font-bold text-center text-green-900 mb-8">

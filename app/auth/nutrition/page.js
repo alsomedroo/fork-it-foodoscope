@@ -8,6 +8,16 @@ const divStyle = {
   backgroundPosition: 'center', 
   height: '100vh' 
 };
+const borderStyle = {
+  content: '',
+  position: 'absolute',
+  top: '120px',  
+  width: '100%',
+  height: '10px',
+  background: 'linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0))',
+  boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
+  filter: 'blur(5px)'
+};
 const Recipes = () => {
   const [steps, setSteps] = useState([]);
   const [search, setSearch] = useState("");
@@ -111,24 +121,24 @@ const Recipes = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="bg-[#E3FACE] h-[120px] flex items-center justify-between px-5 relative">
-      <Link href="/"><button className="text-5xl font-bold text-green-600 font-sans transition duration-300 ease-in-out transform hover:scale-110">Nutribite</button></Link>
-        <nav className="flex items-center space-x-12">
-          <Link href="/auth/recipe">
-            <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">Ingredients</button>
-          </Link>
-          <Link href="/auth/nutrition">
-            <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">Nutrition Analysis</button>
-          </Link>
-          <Link href="/auth/famous">
-            <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">Continental</button>
-          </Link>
-          <Link href="/auth/aboutus">
-            <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">About Us</button>
-            </Link>
-          </nav>
+      <header className="bg-[#E3FACE] h-[120px] flex items-center justify-between px-5 relative md:h-[100px]">
+        <Link href="/"><button className="text-5xl font-bold text-green-600 font-sans transition duration-300 ease-in-out transform hover:scale-110">Nutribite</button></Link>
+        <div className="space-x-12 flex flex-col md:flex-row items-center justify-center md:justify-between space-y-4 md:space-y-0 px-5 py-6 bg-[#E3FACE]">
+        <Link href="/auth/recipe">
+          <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">Ingredients</button>
+        </Link>
+        <Link href="/auth/nutrition">
+          <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">Nutrition Analysis</button>
+        </Link>
+        <Link href="/auth/famous">
+          <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">Continental</button>
+        </Link>
+        <Link href="/auth/aboutus">
+          <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">About Us</button>
+        </Link>
+      </div>
         <div className="flex items-center space-x-6">
-          <div className="text-black text-2xl">
+          <div className="text-black text-2xl hidden md:block">
             <i className="fa-regular fa-user"></i>
           </div>
 
@@ -139,6 +149,29 @@ const Recipes = () => {
           </Link>
         </div>
       </header>
+
+      {/* Navigation Links Below the Header */}
+      <div className="hidden flex  flex-col md:flex-row items-center justify-center md:justify-between space-y-4 md:space-y-0 px-5 py-6 bg-[#E3FACE]">
+        <Link href="/auth/recipe">
+          <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">Ingredients</button>
+        </Link>
+        <Link href="/auth/nutrition">
+          <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">Nutrition Analysis</button>
+        </Link>
+        <Link href="/auth/famous">
+          <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">Continental</button>
+        </Link>
+        <Link href="/auth/aboutus">
+          <button className="text-black text-xl transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-700">About Us</button>
+        </Link>
+      </div>
+
+      
+
+      {/* Navigation Links Below the Header */}
+      
+
+      
       <main style={divStyle} className=" py-8 px-4 flex-grow">
         <h1 className="text-4xl font-bold mb-6 text-center text-gray-800 animate__animated animate__fadeIn">
           Recipes App
@@ -297,6 +330,26 @@ const Recipes = () => {
           </section>
           )}
       </main>
+      <footer className="relative bg-green-800 text-white py-10 px-6">
+        <div className="relative z-10 flex flex-col items-center justify-center">
+          <h2 className="text-2xl font-bold mb-4">Nutribite</h2>
+          <p className="text-center text-sm mb-6 sm:text-xs">
+            Serving delicious recipes and nutrition tips. Your ultimate food companion!
+          </p>
+          <div className="flex space-x-6 sm:space-x-3">
+            <a href="#" className="hover:underline">
+              About Us
+            </a>
+            <a href="#" className="hover:underline">
+              Privacy Policy
+            </a>
+            <a href="#" className="hover:underline">
+              Contact
+            </a>
+          </div>
+          <p className="text-xs mt-6">© 2024 Nutribite. All Rights Reserved.</p>
+        </div>
+      </footer>
       
     </div>
   );

@@ -44,9 +44,12 @@ const About = () => {
   };
 
   return (
-    <main className="bg-gradient-to-br from-green-100 to-green-300 min-h-screen py-12 ">
+    <main className="justify-center bg-gradient-to-br from-green-100 to-green-300 min-h-screen py-12 ">
       {/* Welcome Section */}
-      <Link href="/"><button className="my-10 mx-10 text-5xl font-bold text-green-600 font-sans transition duration-300 ease-in-out transform hover:scale-110">Nutribite</button></Link>
+      <div className='text-center'>
+      <Link href="/"><button className=" my-10 mx-10 text-5xl font-bold text-green-600 font-sans transition duration-300 ease-in-out transform hover:scale-110">Nutribite</button></Link>
+      </div>
+      
       <div className="text-center mb-8">
         <h3 className="text-3xl font-bold text-green-900">HackBasters</h3>
       </div>
@@ -63,9 +66,13 @@ const About = () => {
         />
       </div>
       <div className="flex max-w-3xl mx-auto w-full">
-        <p className="text-xl text-gray-800 leading-relaxed">
+        <p className="mx-10 text-xl text-gray-800 leading-relaxed">
           <br /><br />
-          We are a team of passionate food enthusiasts and tech-savvy friends...
+          We are a team of passionate food enthusiasts and tech-savvy friends, driven by our love for good food and healthy living. Our goal is to make it easy for everyone to explore delicious recipes, understand the nutritional value of their meals, and discover the best local food spots around them.
+
+Whether you’re a home chef, a foodie on a mission, or someone who wants to eat healthier, we’ve got you covered! From curated recipes to detailed nutrition analysis and nearby food recommendations, our platform is here to inspire and guide your culinary journey.
+
+Made with love by friends, for friends—because good food is better when shared!
         </p>
       </div>
 
