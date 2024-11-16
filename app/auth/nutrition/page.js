@@ -330,26 +330,7 @@ const Recipes = () => {
           </section>
           )}
       </main>
-      <footer className="relative bg-green-800 text-white py-10 px-6">
-        <div className="relative z-10 flex flex-col items-center justify-center">
-          <h2 className="text-2xl font-bold mb-4">Nutribite</h2>
-          <p className="text-center text-sm mb-6 sm:text-xs">
-            Serving delicious recipes and nutrition tips. Your ultimate food companion!
-          </p>
-          <div className="flex space-x-6 sm:space-x-3">
-            <a href="#" className="hover:underline">
-              About Us
-            </a>
-            <a href="#" className="hover:underline">
-              Privacy Policy
-            </a>
-            <a href="#" className="hover:underline">
-              Contact
-            </a>
-          </div>
-          <p className="text-xs mt-6">© 2024 Nutribite. All Rights Reserved.</p>
-        </div>
-      </footer>
+      
       
     </div>
   );
